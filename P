@@ -1,0 +1,57 @@
+function setup() {
+  createCanvas(800, 600);
+  background('#fdf6f0');
+  noLoop();
+
+  // Disegna bouquet
+  drawSunflower(200, 400, 60);
+  drawSunflower(250, 420, 50);
+
+  drawRose(400, 420, color(255, 0, 100));
+  drawRose(450, 440, color(200, 0, 80));
+
+  drawLily(600, 400, color(255, 182, 193)); // rosa
+  drawLily(650, 420, color(255, 140, 0));   // arancio
+}
+
+function drawStem(x, y, len) {
+  stroke(34, 139, 34);
+  strokeWeight(8);
+  line(x, y, x, y - len);
+}
+
+// Girasole
+function drawSunflower(x, y, size) {
+  drawStem(x, y, 150);
+  noStroke();
+  fill(255, 204, 0);
+  for (let i = 0; i < 20; i++) {
+    let angle = TWO_PI / 20 * i;
+    ellipse(x + cos(angle) * size, y - 150 + sin(angle) * size, size / 2, size);
+  }
+  fill(100, 50, 0);
+  ellipse(x, y - 150, size, size);
+}
+
+// Rosa
+function drawRose(x, y, petalColor) {
+  drawStem(x, y, 150);
+  noStroke();
+  fill(petalColor);
+  for (let r = 30; r > 5; r -= 5) {
+    ellipse(x, y - 150, r * 2, r);
+  }
+}
+
+// Giglio
+function drawLily(x, y, petalColor) {
+  drawStem(x, y, 150);
+  noStroke();
+  fill(petalColor);
+  for (let i = 0; i < 6; i++) {
+    let angle = TWO_PI / 6 * i;
+    ellipse(x + cos(angle) * 30, y - 150 + sin(angle) * 30, 60, 20);
+  }
+  fill(255, 255, 0);
+  ellipse(x, y - 150, 10, 10);
+}
